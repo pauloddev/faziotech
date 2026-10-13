@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fazio Tech · Assistência Técnica em Cáceres</title>
+<meta name="description" content="Fazio Tech — assistência técnica especializada em Cáceres/MT. Não liga? Quebrou? Molhou? Técnico certificado, nota 5 no Google. Capas, películas, fones e carregadores.">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fazio Tech · Assistência Técnica Especializada">
+<meta property="og:description" content="Não liga? Quebrou? Molhou? Nós temos a solução. Técnico certificado em Cáceres/MT.">
+<meta property="og:image" content="img/og.jpg">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500..800&family=Manrope:wght@400..700&display=swap">
+<style>
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+:root{
+  color-scheme:dark;
+  --ink:#000;
+  --panel:rgba(8,10,8,.82);
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.2);
+  --white:#f5f6f4;
+  --mute:#b0b4ae;
+  --dim:#767b74;
+  --g:#8fe000;
+  --g-hi:#b4ff2e;
+  --g-deep:#5fa000;
+  --g-glow:rgba(143,224,0,.45);
+  --gold:#fbbc04;
+  --wa:#25d366;
+  --display:"Outfit","Segoe UI",Arial,sans-serif;
+  --body:"Manrope","Segoe UI",Arial,sans-serif;
+  --gut:clamp(16px,4vw,48px);
+  --max:1240px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--ink);color:var(--white);font:400 16.5px/1.65 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px;border-radius:8px}
+
+/* ======== fundo: foto do laboratório com transparência ======== */
+.labbg{position:fixed;inset:0;z-index:-2;pointer-events:none;background:url(img/laboratorio.webp) center/cover no-repeat;opacity:.24;filter:saturate(.7)}
+.labshade{position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(55% 45% at 90% 0%,rgba(143,224,0,.13),transparent 70%),
+  radial-gradient(45% 40% at 0% 60%,rgba(143,224,0,.06),transparent 70%),
+  linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.7) 60%,rgba(0,0,0,.85))}
+.gridlines{position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/calc((100vw - 20px)/12) 100%;-webkit-mask:linear-gradient(180deg,#000,transparent 30%,transparent 70%,#000);mask:linear-gradient(180deg,#000,transparent 30%,transparent 70%,#000)}
+
+/* ======== moldura técnica ======== */
+.frame{position:fixed;inset:10px calc(var(--rw) + 6px);z-index:3;pointer-events:none}
+.frame .c{position:absolute;width:20px;height:20px;border:0 solid var(--g)}
+.frame .c1{top:0;left:0;border-top-width:1px;border-left-width:1px}.frame .c2{top:0;right:0;border-top-width:1px;border-right-width:1px}
+.frame .c3{bottom:0;left:0;border-bottom-width:1px;border-left-width:1px}.frame .c4{bottom:0;right:0;border-bottom-width:1px;border-right-width:1px}
+.frame .h{position:absolute;left:28px;right:28px;height:1px;background:linear-gradient(90deg,rgba(143,224,0,.6),rgba(143,224,0,.08) 25%,rgba(143,224,0,.08) 75%,rgba(143,224,0,.6))}
+.frame .ht{top:0}.frame .hb{bottom:0}
+.frame .tag{position:absolute;bottom:6px;left:36px;font:600 9.5px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+.frame .tag.r2{left:auto;right:36px}
+@media (max-width:640px){.frame{inset:5px}.frame .c{width:12px;height:12px}.frame .h{left:18px;right:18px}.frame .tag{display:none}}
+
+
+/* ======== trilhas de circuito nas laterais ======== */
+.rail-pcb{position:fixed;top:0;bottom:0;z-index:3;pointer-events:none;width:var(--rw)}
+.rail-pcb.l{left:0}.rail-pcb.r{right:0}
+:root{--rw:clamp(14px,3.1vw,48px)}
+.rail-pcb svg{display:block;width:100%;height:100%;overflow:visible}
+.rail-pcb .tr{fill:none;stroke:rgba(143,224,0,.42);stroke-width:1.1;stroke-linejoin:round;stroke-linecap:round}
+.rail-pcb .tr.hi{stroke:rgba(143,224,0,.7)}
+.rail-pcb .via{fill:#000;stroke:rgba(143,224,0,.75);stroke-width:1}
+.rail-pcb .pad{fill:rgba(143,224,0,.55)}
+.rail-pcb .chip{fill:rgba(143,224,0,.1);stroke:rgba(143,224,0,.8);stroke-width:1}
+.rail-pcb .pin1{fill:var(--g)}
+.rail-pcb .lbl{font:700 6px/1 var(--body);letter-spacing:.12em;fill:rgba(143,224,0,.7)}
+.rail-pcb .pulse{fill:none;stroke:var(--g-hi);stroke-width:1.6;stroke-linecap:round;filter:drop-shadow(0 0 3px var(--g)) drop-shadow(0 0 6px rgba(143,224,0,.6));animation:flow var(--d,7s) linear infinite;animation-delay:var(--dl,0s)}
+@keyframes flow{to{stroke-dashoffset:var(--to)}}
+.rail-pcb .prog{fill:none;stroke:var(--g);stroke-width:1.8;filter:drop-shadow(0 0 4px var(--g))}
+.rail-pcb .head{fill:#fff;stroke:var(--g);stroke-width:2;filter:drop-shadow(0 0 6px var(--g))}
+.rail-pcb .halo{fill:none;stroke:var(--g);stroke-width:1;animation:halo2 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes halo2{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.2);opacity:0}}
+.rail-pcb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#000 0,transparent 70px,transparent calc(100% - 50px),#000)}
+@media (max-width:640px){.rail-pcb .tr{stroke:rgba(143,224,0,.34)}}
+
+/* ======== base ======== */
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+main>section{position:relative;padding-block:clamp(72px,10vw,130px)}
+main>section+section::before{content:"";position:absolute;top:0;left:var(--gut);right:var(--gut);height:1px;background:linear-gradient(90deg,var(--g),rgba(255,255,255,.08) 25%,rgba(255,255,255,.08) 75%,rgba(255,255,255,.3));z-index:1}
+main>section+section::after{content:"";position:absolute;top:-4px;left:var(--gut);width:9px;height:9px;border:1px solid var(--g);background:var(--ink);transform:rotate(45deg);z-index:1}
+.eyebrow{font:700 12px/1.4 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--white);display:flex;align-items:center;gap:12px;margin:0}
+.eyebrow::before{content:"";width:28px;height:2px;border-radius:2px;background:var(--g);flex:none}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.01em;line-height:1.05;margin:0;text-wrap:balance;text-transform:uppercase}
+h1,h2{color:var(--g);text-shadow:0 0 40px rgba(143,224,0,.22)}
+h2{font-size:clamp(30px,5vw,60px);margin-top:16px;padding-top:.06em}
+h3{font-size:clamp(18px,1.8vw,22px);font-weight:700}
+.w{color:var(--white);text-shadow:none}
+.gtxt{color:var(--g)}
+.lead{color:var(--white);opacity:.86;font-size:clamp(16px,1.35vw,18px);max-width:58ch;margin:20px 0 0}
+.lead.gtxt{opacity:1;font-weight:600}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(36px,5vw,56px)}
+.head .lead{margin:0;max-width:42ch}
+
+/* botões */
+.btn{--pad:15px 26px;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:var(--pad);border-radius:999px;background:#000;color:#fff;text-decoration:none;font:700 13px/1.2 var(--display);letter-spacing:.1em;text-transform:uppercase;isolation:isolate;border:0;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s;min-height:48px;text-align:center}
+.btn::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:conic-gradient(from var(--a),transparent 0 62%,var(--g) 80%,transparent 92%),linear-gradient(rgba(255,255,255,.24),rgba(255,255,255,.24));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:beam 3.6s linear infinite;z-index:-1}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px -10px var(--g-glow)}
+.btn.solid{background:linear-gradient(180deg,var(--g-hi),var(--g) 45%,var(--g-deep));color:#071000;box-shadow:0 12px 34px -14px var(--g-glow),inset 0 1px 0 rgba(255,255,255,.5)}.btn.solid::before{display:none}
+.btn svg{width:18px;height:18px;flex:none}
+@keyframes beam{to{--a:360deg}}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:480px){.btns .btn{flex:1 1 100%}}
+
+.hud{position:relative}
+.hud>.k{position:absolute;width:22px;height:22px;border:0 solid var(--g);z-index:2;pointer-events:none}
+.hud>.k1{top:12px;left:12px;border-top-width:2px;border-left-width:2px}.hud>.k2{top:12px;right:12px;border-top-width:2px;border-right-width:2px}
+.hud>.k3{bottom:12px;left:12px;border-bottom-width:2px;border-left-width:2px}.hud>.k4{bottom:12px;right:12px;border-bottom-width:2px;border-right-width:2px}
+
+/* ======== nav ======== */
+.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(0,0,0,.8);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+.nav .brand{display:block;height:54px;flex:none}
+.nav .brand img{height:100%;width:auto}
+.nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;white-space:nowrap}
+.nav ul a{text-decoration:none;font:600 12px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--white);opacity:.75;transition:color .2s,opacity .2s}
+.nav ul a:hover{color:var(--g);opacity:1}
+.nav .btn{--pad:11px 18px;font-size:11.5px;min-height:42px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line-2);background:transparent;color:#fff;cursor:pointer;place-items:center}
+.burger svg{width:22px;height:22px}
+.navr{display:flex;align-items:center;gap:10px}
+@media (max-width:1180px){.nav ul{display:none}.burger{display:grid}
+  .nav.open ul{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:70px;background:rgba(0,0,0,.96);border-bottom:1px solid var(--line);padding:8px var(--gut) 18px}
+  .nav.open ul a{display:block;padding:15px 0;border-bottom:1px solid var(--line);font-size:14px;opacity:1}}
+@media (max-width:440px){.nav .btn{--pad:10px 13px;font-size:10.5px;letter-spacing:.06em}.nav .brand{height:46px}}
+
+/* ======== HERO ======== */
+.hero{overflow-x:clip;padding-block:clamp(36px,6vw,80px) clamp(70px,9vw,120px)!important}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(40px,6vw,86px);line-height:1;margin-top:20px}
+.hero h1 span{display:block}
+.probs{display:flex;flex-wrap:wrap;gap:8px 18px;margin:24px 0 0;padding:0;list-style:none;font:800 clamp(18px,2vw,24px)/1.2 var(--display);text-transform:uppercase}
+.probs li{display:flex;align-items:center;gap:10px}
+.probs li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 12px var(--g)}
+.hero .lead{margin-bottom:30px}
+.rate{display:inline-flex;align-items:center;gap:12px;margin-top:26px;padding:10px 18px 10px 12px;border:1px solid rgba(143,224,0,.5);border-radius:999px;background:rgba(143,224,0,.06);text-decoration:none;font:700 11.5px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+.rate b{font:800 22px/1 var(--display);color:var(--g)}
+.rate i{font-style:normal;color:var(--gold);letter-spacing:2px;font-size:15px}
+.stage{position:relative;aspect-ratio:1;max-width:560px;width:100%;margin-inline:auto}
+.stage::before{content:"";position:absolute;inset:-34%;border-radius:50%;background:radial-gradient(closest-side,#000 55%,rgba(0,0,0,.85) 72%,transparent)}
+.stage .disc{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(closest-side,rgba(143,224,0,.16),rgba(143,224,0,.04) 70%,transparent);border:1px solid rgba(143,224,0,.25)}
+.stage .orbit{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(255,255,255,.18);animation:spin 50s linear infinite}
+.stage .orbit::after{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--g);box-shadow:0 0 14px var(--g)}
+.stage .orbit.o2{inset:14%;animation-duration:34s;animation-direction:reverse;border-style:solid;border-color:rgba(255,255,255,.08)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stage .mark{position:absolute;inset:13% 9%;display:grid;place-items:center;animation:float 7s ease-in-out infinite}
+.stage .mark img{width:100%;height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(143,224,0,.25))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.chip{position:absolute;z-index:3;display:flex;flex-direction:column;gap:3px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line-2);border-left:3px solid var(--g);border-radius:14px;padding:11px 15px}
+.chip b{font:800 15px/1.1 var(--display);letter-spacing:.05em;text-transform:uppercase}
+.chip small{font:600 10.5px/1.2 var(--body);letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
+.chip.c-a{left:0;top:10%}.chip.c-b{right:0;bottom:12%}
+.chip .st{color:var(--gold);letter-spacing:2px;font-size:13px}
+.coords{position:absolute;left:4%;bottom:2%;font:600 10px/1.5 var(--body);letter-spacing:.2em;color:rgba(255,255,255,.4);text-transform:uppercase}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.stage{max-width:430px;order:-1}.chip.c-a{top:2%}.chip.c-b{bottom:-3%}.stage .mark{inset:16% 11% 20%}.coords{display:none}}
+@media (max-width:420px){.chip{padding:8px 11px}.chip b{font-size:13px}}
+
+/* ======== AVALIAÇÕES (fundo verde) ======== */
+main>section.reviews{padding-block:clamp(84px,10vw,130px);color:#061000;isolation:isolate}
+main>section.reviews::before,main>section.reviews::after{display:none}
+main>section.reviews+section::before,main>section.reviews+section::after{display:none}
+.reviews .board{position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(70% 90% at 85% 0%,rgba(255,255,255,.35),transparent 60%),
+  radial-gradient(60% 80% at 0% 100%,rgba(0,0,0,.18),transparent 60%),
+  linear-gradient(160deg,#a4f21a,#8fe000 45%,#76c400);
+  clip-path:polygon(0 56px,56px 0,calc(100% - 220px) 0,calc(100% - 196px) 24px,100% 24px,100% calc(100% - 56px),calc(100% - 56px) 100%,200px 100%,176px calc(100% - 24px),0 calc(100% - 24px))}
+.reviews .board svg{position:absolute;inset:0;width:100%;height:100%}
+.reviews .board .t{fill:none;stroke:rgba(0,0,0,.13);stroke-width:1.4}
+.reviews .board .v{fill:#8fe000;stroke:rgba(0,0,0,.22);stroke-width:1.4}
+.reviews .board .p{fill:none;stroke:rgba(255,255,255,.85);stroke-width:2;stroke-linecap:round;animation:flow 9s linear infinite}
+.rvhead{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,5vw,80px);align-items:end;margin-bottom:clamp(36px,5vw,56px)}
+.bigscore{position:relative}
+.bigscore .gl{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:#061000;color:#fff;font:700 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase}
+.bigscore .gl svg{width:22px;height:22px;background:#fff;border-radius:50%;padding:3px}
+.bigscore .n{display:block;font:800 clamp(120px,17vw,230px)/.82 var(--display);letter-spacing:-.05em;color:#061000;margin-top:18px}
+.bigscore .st{display:flex;gap:6px;margin-top:clamp(30px,3.4vw,46px)}
+.bigscore .st svg{width:clamp(26px,3vw,40px);height:auto;fill:#061000;animation:pop .6s var(--ease) both}
+.bigscore .st svg:nth-child(2){animation-delay:.08s}.bigscore .st svg:nth-child(3){animation-delay:.16s}.bigscore .st svg:nth-child(4){animation-delay:.24s}.bigscore .st svg:nth-child(5){animation-delay:.32s}
+@keyframes pop{from{transform:scale(.3) rotate(-30deg);opacity:0}to{transform:none;opacity:1}}
+.reviews h2{color:#061000;text-shadow:none;font-size:clamp(34px,5.4vw,72px)}
+.reviews h2 .o{display:inline;color:var(--g);background:#061000;padding:.04em .22em .02em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.28}
+.reviews .eyebrow{color:#061000}.reviews .eyebrow::before{background:#061000}
+.reviews .lead{color:#0d1a00;opacity:1;font-weight:500}
+.btn.dark{background:#061000;color:var(--g);box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
+.btn.dark::before{display:none}
+.btn.dark:hover{box-shadow:0 18px 40px -14px rgba(0,0,0,.7)}
+.rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rcard{position:relative;margin:0;display:flex;flex-direction:column;gap:12px;padding:22px;border-radius:20px;background:#050705;color:#fff;box-shadow:0 24px 40px -26px rgba(0,0,0,.7);transition:transform .45s var(--ease),box-shadow .45s}
+.rcard:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:0 34px 50px -26px rgba(0,0,0,.8)}
+.rcard::after{content:"";position:absolute;right:18px;bottom:16px;width:26px;height:1px;background:var(--g);box-shadow:-6px 0 0 -0px transparent}
+.rcard .who{display:flex;align-items:center;gap:12px;padding-right:26px}
+.rcard .av{position:relative;flex:none;width:42px;height:42px;border-radius:50%;overflow:hidden;display:grid;place-items:center;font:500 19px/1 var(--body);color:#fff}
+.rcard .av img{width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
+.rcard .who b{display:block;font:700 15px/1.25 var(--display)}
+.rcard .who small{display:block;font-size:12.5px;color:#9aa096}
+.rcard .meta{display:flex;align-items:center;gap:10px;font-size:12.5px;color:#9aa096}
+.rcard .meta i{font-style:normal;color:var(--gold);letter-spacing:1.5px;font-size:14px}
+.rcard blockquote{margin:0;font:600 17px/1.4 var(--display)}
+.rcard .g{position:absolute;top:20px;right:20px;width:18px;height:18px;opacity:.9}
+.rcard.feat{grid-column:span 2;grid-row:span 2;padding:clamp(26px,3vw,40px);justify-content:space-between;background:radial-gradient(90% 80% at 100% 0%,rgba(143,224,0,.2),transparent 60%),#050705}
+.rcard.feat blockquote{font-size:clamp(26px,3vw,40px);line-height:1.15;letter-spacing:-.01em}
+.rcard.feat .q{display:block;width:clamp(44px,5vw,64px);height:auto;fill:var(--g);margin:6px 0 14px}
+.rcard.feat .tag{align-self:flex-start;font:700 10.5px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--g);border:1px solid rgba(143,224,0,.45);padding:7px 10px;border-radius:999px}
+.rcta{grid-column:span 2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;border-radius:20px;border:2px dashed rgba(6,16,0,.55);color:#061000;text-decoration:none;font:800 clamp(18px,1.8vw,24px)/1.15 var(--display);text-transform:uppercase;transition:background .3s,border-color .3s}
+.rcta:hover{background:rgba(6,16,0,.08);border-color:#061000}
+.rcta span.arrow{flex:none;width:52px;height:52px;border-radius:50%;background:#061000;color:var(--g);display:grid;place-items:center;transition:transform .4s var(--ease)}
+.rcta:hover span.arrow{transform:rotate(-45deg)}
+.rcta svg{width:22px;height:22px}
+@media (max-width:1000px){.rgrid{grid-template-columns:repeat(2,1fr)}.rvhead{grid-template-columns:1fr;align-items:start}}
+@media (max-width:560px){.rgrid{grid-template-columns:1fr}.rcard.feat,.rcta{grid-column:auto;grid-row:auto}
+  .reviews .board{clip-path:polygon(0 28px,28px 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%)}}
+
+/* ======== IMPACTO ======== */
+.impact{text-align:center}
+.impact h2{font-size:clamp(32px,6vw,76px);max-width:16ch;margin-inline:auto}
+.impact .lead{margin-inline:auto;text-align:center}
+.impact .big{font:700 clamp(19px,2.2vw,28px)/1.35 var(--display);color:var(--g);margin:26px auto 0;max-width:34ch}
+
+/* ======== PILARES ======== */
+.pillars{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,40px);margin-top:10px}
+.pillars::before{content:"";position:absolute;top:38px;left:8%;right:8%;height:1px;background:repeating-linear-gradient(90deg,var(--g) 0 8px,transparent 8px 16px);opacity:.6}
+.pillar{position:relative;padding-top:0}
+.pillar .n{position:relative;z-index:1;display:grid;place-items:center;width:76px;height:76px;border-radius:50%;background:#000;border:1px solid rgba(143,224,0,.6);font:800 26px/1 var(--display);color:var(--g);box-shadow:0 0 30px -6px var(--g-glow)}
+.pillar .n::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px dashed rgba(255,255,255,.18)}
+.pillar h3{margin-top:24px;color:var(--white)}
+.pillar p{margin:10px 0 0;opacity:.82;max-width:30ch}
+@media (max-width:760px){.pillars{grid-template-columns:1fr;gap:34px}.pillars::before{top:0;bottom:0;left:38px;right:auto;width:1px;height:auto;background:repeating-linear-gradient(180deg,var(--g) 0 8px,transparent 8px 16px)}
+  .pillar{display:grid;grid-template-columns:76px 1fr;column-gap:20px;align-items:start}.pillar h3{margin-top:10px}.pillar p{grid-column:2}}
+
+/* ======== REPAROS ======== */
+.rep{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,70px);align-items:start}
+.rep .sticky{position:sticky;top:100px}
+.qs{display:flex;flex-direction:column;gap:2px;margin-top:20px;font:800 clamp(30px,4.6vw,58px)/1.02 var(--display);text-transform:uppercase}
+.qs span:nth-child(odd){color:var(--white)}.qs span:nth-child(even){color:var(--g)}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:0;list-style:none}
+.svc li{display:flex;align-items:flex-start;gap:14px;padding:18px;border-radius:18px;background:var(--panel);border:1px solid var(--line);transition:transform .4s var(--ease),border-color .3s}
+.svc li:hover{transform:translateY(-3px);border-color:rgba(143,224,0,.5)}
+.svc .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(143,224,0,.1);border:1px solid rgba(143,224,0,.4)}
+.svc .ic svg{width:22px;height:22px;stroke:var(--g);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.svc b{display:block;font:700 15.5px/1.25 var(--display);letter-spacing:.03em;text-transform:uppercase}
+.svc small{display:block;margin-top:4px;color:var(--mute);font-size:13.5px;line-height:1.45}
+.plat{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.plat span{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--line-2);font:700 12.5px/1 var(--display);letter-spacing:.08em;text-transform:uppercase}
+.plat svg{width:16px;height:16px;fill:#fff}
+.label{font:700 11px/1.4 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin:30px 0 0}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:clamp(40px,5vw,64px)}
+.gal .tile{aspect-ratio:3/4}
+.gal .tile img{object-position:50% 40%}
+.gal figcaption{font-size:14px}
+@media (max-width:900px){.rep{grid-template-columns:1fr}.rep .sticky{position:static}.gal{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.svc{grid-template-columns:1fr}.gal{gap:8px}.gal figcaption{font-size:12.5px;padding:36px 11px 10px}.gal figcaption small{font-size:9.5px}}
+
+/* fotos */
+.tile{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);margin:0;background:#0a0b0a;aspect-ratio:4/5}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 14px;background:linear-gradient(transparent,rgba(0,0,0,.9));font:700 15px/1.3 var(--display);z-index:2}
+.tile figcaption small{display:block;font:700 10.5px/1.4 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:4px}
+.ph{display:grid;place-items:center;text-align:center;background:repeating-linear-gradient(135deg,rgba(143,224,0,.06) 0 12px,transparent 12px 24px),#070807;border:1px dashed rgba(143,224,0,.35)}
+.ph span{display:flex;flex-direction:column;align-items:center;gap:10px;font:700 11px/1.4 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);padding:16px}
+.ph svg{width:30px;height:30px;stroke:var(--g);fill:none;stroke-width:1.6}
+.shine .sh{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.2) 50%,transparent 65%);transform:translateX(-120%)}
+.shine:hover .sh{transform:translateX(120%);transition:transform 1s var(--ease)}
+.shine:hover img{transform:scale(1.04)}
+
+/* ======== ACESSÓRIOS ======== */
+#acessorios{overflow:hidden}
+.rail-wrap{position:relative;--cw:clamp(230px,25vw,310px);margin-inline:calc(var(--gut)*-1)}
+.rail{display:flex;gap:clamp(10px,1.4vw,18px);overflow-x:auto;scroll-snap-type:x mandatory;padding:26px calc(50% - var(--cw)/2) 30px;scrollbar-width:none;cursor:grab;-webkit-mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.rail .tile{flex:0 0 var(--cw);aspect-ratio:3/4;scroll-snap-align:center;transform:scale(var(--s,.84));opacity:var(--o,.45);transition:transform .45s var(--ease),opacity .45s,border-color .45s,box-shadow .45s}
+.rail .tile img{-webkit-user-drag:none;user-select:none}
+.rail .tile.on{border-color:var(--g);box-shadow:0 30px 70px -30px #000,0 0 60px -18px var(--g-glow)}
+.rail .tile figcaption{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s var(--ease)}
+.rail .tile.on figcaption{opacity:1;transform:none}
+.rail-btn{position:absolute;top:50%;z-index:6;width:clamp(50px,5vw,64px);aspect-ratio:1;margin-top:-46px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;color:#071000;background:linear-gradient(180deg,var(--g-hi),var(--g-deep));box-shadow:0 14px 34px -10px var(--g-glow),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .3s var(--ease)}
+.rail-btn svg{width:44%;height:44%;fill:none;stroke:currentColor;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.rail-btn:hover{transform:scale(1.1)}.rail-btn:active{transform:scale(.94)}
+.rail-btn.p{left:calc(50% - var(--cw)/2 - clamp(40px,5.5vw,90px))}
+.rail-btn.n{right:calc(50% - var(--cw)/2 - clamp(40px,5.5vw,90px))}
+.rail-foot{display:flex;align-items:center;gap:18px;max-width:520px;margin:6px auto 0;padding-inline:var(--gut)}
+.rail-count{font:700 15px/1 var(--display);letter-spacing:.06em;white-space:nowrap}
+.rail-count b{color:var(--g);font-size:22px;font-weight:800}
+.rail-bar{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}
+.rail-bar i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--g-deep),var(--g));transition:width .5s var(--ease)}
+@media (max-width:560px){.rail-wrap{--cw:68vw}.rail-btn.p{left:8px}.rail-btn.n{right:8px}}
+.acc{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:clamp(40px,5vw,60px) 0 0;padding:0;list-style:none}
+.acc li{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:22px 20px;border-radius:20px;background:var(--panel);border:1px solid var(--line);transition:transform .4s var(--ease),border-color .3s,box-shadow .3s}
+.acc li:hover{transform:translateY(-4px);border-color:rgba(143,224,0,.6);box-shadow:0 0 40px -16px var(--g-glow)}
+.acc .ic{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(160deg,rgba(143,224,0,.18),rgba(143,224,0,.04));border:1px solid rgba(143,224,0,.45)}
+.acc .ic svg{width:28px;height:28px;stroke:var(--g);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.acc b{font:800 17px/1.15 var(--display);letter-spacing:.04em;text-transform:uppercase}
+@media (max-width:980px){.acc{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.acc{grid-template-columns:1fr 1fr}.acc li:last-child{grid-column:span 2;flex-direction:row;align-items:center}}
+
+.store{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(30px,5vw,72px);align-items:center}
+.store-ph{position:relative;margin:0;border-radius:30px;overflow:hidden;border:1px solid var(--line-2);aspect-ratio:4/5;box-shadow:0 60px 120px -40px #000,0 0 90px -34px var(--g-glow)}
+.store-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;transition:transform 1.2s var(--ease)}
+.store-ph:hover img{transform:scale(1.03)}
+.store-ph .scan{position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);box-shadow:0 0 18px var(--g);animation:scanY 7s var(--ease) infinite;z-index:2}
+@keyframes scanY{0%{top:0;opacity:0}8%{opacity:.8}70%{opacity:.6}85%,100%{top:100%;opacity:0}}
+.store-ph figcaption{position:absolute;left:18px;bottom:18px;z-index:3;font:700 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:10px 14px;border-radius:999px;border:1px solid var(--line-2);border-left:3px solid var(--g)}
+.feats{list-style:none;margin:30px 0 0;padding:0;border-top:1px solid var(--line-2)}
+.feats li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;padding:18px 0;border-bottom:1px solid var(--line)}
+.feats .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(143,224,0,.1);border:1px solid rgba(143,224,0,.45)}
+.feats .ic svg{width:22px;height:22px;stroke:var(--g);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.feats b{display:block;font:700 16px/1.25 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.feats span.t{display:block;margin-top:4px;color:var(--mute);font-size:14.5px;line-height:1.5}
+@media (max-width:900px){.store{grid-template-columns:1fr}.store-ph{max-width:520px;width:100%;margin-inline:auto;order:-1}}
+/* ======== CEO ======== */
+.ceo{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,72px);align-items:center}
+.ceo-ph{position:relative;margin:0;border-radius:30px;overflow:hidden;border:1px solid rgba(143,224,0,.5);aspect-ratio:4/5;background:#0a0b0a;box-shadow:0 60px 120px -40px #000,0 0 100px -30px var(--g-glow)}
+.ceo-ph img{width:100%;height:100%;object-fit:cover}
+.ceo-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.85));pointer-events:none}
+.ceo-ph .tagname{position:absolute;left:22px;right:22px;bottom:20px;z-index:3;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.ceo-ph .tagname b{font:800 clamp(22px,2.6vw,32px)/1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.ceo-ph .tagname small{display:block;font:700 10.5px/1.4 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--g);margin-bottom:6px}
+.ceo-ph .tagname img{width:clamp(70px,9vw,104px);height:auto;flex:none}
+.ceo h2{font-size:clamp(40px,6.4vw,84px)}
+.ceo .role{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:9px 14px;border-radius:999px;border:1px solid rgba(143,224,0,.5);background:rgba(143,224,0,.07);font:700 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase}
+.ceo .brandrow{display:flex;align-items:center;gap:18px;margin-top:28px}
+.ceo .brandrow img{width:clamp(120px,14vw,170px);height:auto}
+.ceo .brandrow p{margin:0;font:600 14px/1.5 var(--body);color:var(--mute);max-width:26ch}
+.trained{margin-top:34px;padding-top:26px;border-top:1px solid var(--line-2)}
+.trained .eyebrow{color:var(--g)}
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.lg{display:grid;place-items:center;min-height:110px;padding:16px 14px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015)),#050605;border:1px solid var(--line-2);transition:transform .4s var(--ease),border-color .3s,box-shadow .3s}
+.lg:hover{transform:translateY(-3px);border-color:rgba(143,224,0,.6);box-shadow:0 18px 40px -18px var(--g-glow)}
+.lg img{width:100%;max-height:64px;object-fit:contain}
+.lg.round img{max-height:78px}
+@media (max-width:900px){.ceo{grid-template-columns:1fr}.ceo-ph{max-width:520px;width:100%;margin-inline:auto}}
+@media (max-width:560px){.logos{grid-template-columns:1fr 1fr}}
+
+/* ======== CAPACITAÇÃO ======== */
+.capg{display:grid;grid-template-columns:1.15fr 1fr;gap:12px}
+.capg .main{aspect-ratio:4/5;border-color:rgba(143,224,0,.55);box-shadow:0 0 90px -30px var(--g-glow)}
+.capg .main figcaption{font-size:clamp(17px,1.8vw,21px);padding:60px 22px 20px}
+.capg .side{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.capg .side .tile{aspect-ratio:auto;min-height:0}
+.capg .side .tile img{object-position:50% 25%}
+.capcta{display:flex;flex-direction:column;justify-content:space-between;gap:14px;padding:20px;border-radius:22px;background:linear-gradient(180deg,var(--g-hi),var(--g) 50%,var(--g-deep));color:#071000;text-decoration:none;transition:transform .4s var(--ease)}
+.capcta:hover{transform:translateY(-3px)}
+.capcta b{font:800 clamp(17px,1.7vw,22px)/1.1 var(--display);text-transform:uppercase}
+.capcta span{font:800 12px/1 var(--display);letter-spacing:.12em;text-transform:uppercase}
+.courses{list-style:none;margin:clamp(40px,5vw,60px) 0 0;padding:0;border-top:1px solid var(--line-2)}
+.courses li{display:grid;grid-template-columns:minmax(150px,.32fr) 1fr auto;gap:8px clamp(16px,3vw,40px);align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line);transition:padding .4s var(--ease),background .3s}
+.courses li:hover{padding-left:14px;background:linear-gradient(90deg,rgba(143,224,0,.08),transparent 60%)}
+.courses .org{font:800 15px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--g)}
+.courses .what{font-size:15.5px;line-height:1.5}
+.courses .meta{font:700 11px/1.4 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);white-space:nowrap;text-align:right}
+@media (max-width:900px){.capg{grid-template-columns:1fr}.capg .side{grid-template-columns:repeat(3,1fr)}.capg .side .tile{aspect-ratio:3/4}.courses li{grid-template-columns:1fr}.courses .meta{text-align:left;white-space:normal}}
+@media (max-width:560px){.capg .side{grid-template-columns:1fr 1fr}}
+
+/* ======== CLIENTES ======== */
+.clients{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.clients figure{margin:0;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#0a0b0a;position:relative;aspect-ratio:3/4;transition:border-color .3s}
+.clients figure:hover{border-color:rgba(143,224,0,.55)}
+.clients img{width:100%;height:100%;object-fit:cover;object-position:50% 70%;transition:transform .9s var(--ease)}
+@media (max-width:1000px){.clients{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:620px){.clients{grid-template-columns:repeat(2,1fr);gap:8px}.clients figure{border-radius:16px}}
+
+/* ======== LOCALIZAÇÃO / HORÁRIOS ======== */
+.place{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:stretch}
+.labph{position:relative;margin:0;border-radius:28px;overflow:hidden;border:1px solid var(--line-2);min-height:100%;background:#0a0b0a}
+.labph img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.labph figcaption{position:absolute;left:18px;bottom:18px;z-index:3;font:700 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:10px 14px;border-radius:999px;border:1px solid var(--line-2);border-left:3px solid var(--g)}
+.loc{display:grid;gap:16px}
+.infocard{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:28px;border:1px solid var(--line-2);background:radial-gradient(70% 110% at 0% 0%,rgba(143,224,0,.14),transparent 65%),var(--panel);overflow:hidden}
+.infocard>div{padding:clamp(20px,2.6vw,28px)}
+.infocard>div+div{border-left:1px solid var(--line)}
+.infocard .btn{margin-top:16px;width:100%}
+.addr{margin:12px 0 0;font:700 17px/1.45 var(--display)}
+@media (max-width:560px){.infocard{grid-template-columns:1fr}.infocard>div+div{border-left:0;border-top:1px solid var(--line)}}
+.map{position:relative;min-height:clamp(280px,26vw,320px);border-radius:28px;overflow:hidden;border:1px solid var(--line-2);background:#0b0c0b}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.9) brightness(.7) contrast(1.15);transition:filter .8s var(--ease)}
+.map.live iframe{filter:none}
+.map .art{position:absolute;inset:0;background:
+ linear-gradient(28deg,transparent 47%,rgba(255,255,255,.16) 47.4% 48.6%,transparent 49%),
+ linear-gradient(-62deg,transparent 30%,rgba(255,255,255,.10) 30.3% 31.3%,transparent 31.6%),
+ linear-gradient(-62deg,transparent 66%,rgba(255,255,255,.10) 66.3% 67.3%,transparent 67.6%),
+ linear-gradient(8deg,transparent 72%,rgba(143,224,0,.35) 72.3% 73.4%,transparent 73.8%),
+ repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 34px),
+ repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 34px),
+ radial-gradient(60% 60% at 50% 50%,#121612,#070807)}
+.map .street{position:absolute;font:700 9.5px/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);pointer-events:none}
+.map .cover{text-decoration:none;position:absolute;inset:0;z-index:5;width:100%;border:0;padding:0 0 18px;background:radial-gradient(60% 60% at 50% 50%,transparent 40%,rgba(0,0,0,.55));cursor:pointer;display:flex;align-items:flex-end;justify-content:center}
+.map .cover span{font:700 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.75);border:1px solid var(--line-2);padding:11px 16px;border-radius:999px}
+.map.live .cover{display:none}
+.map .coord{position:absolute;top:16px;left:18px;z-index:4;font:700 10.5px/1 var(--body);letter-spacing:.18em;text-transform:uppercase;background:rgba(0,0,0,.65);padding:8px 10px;border-radius:8px;pointer-events:none}
+.pin{position:absolute;left:50%;top:calc(50% - 13px);transform:translate(-50%,-100%);z-index:4;pointer-events:none;transition:transform .7s var(--ease),opacity .5s}
+.pin .body{width:54px;height:54px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:radial-gradient(circle at 34% 30%,#eaffb8 0%,var(--g-hi) 22%,var(--g) 50%,#3f6b00 100%);box-shadow:inset -7px -7px 14px rgba(0,0,0,.4),inset 5px 5px 9px rgba(255,255,255,.55),10px 14px 22px rgba(0,0,0,.6),0 0 30px var(--g-glow);position:relative;animation:bob 2.6s ease-in-out infinite}
+.pin .body::after{content:"";position:absolute;left:50%;top:50%;width:20px;height:20px;transform:translate(-50%,-50%);border-radius:50%;background:#050505;box-shadow:inset 0 2px 4px rgba(255,255,255,.2)}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -9px}}
+.ring{position:absolute;left:50%;top:50%;width:26px;height:10px;border:2px solid var(--g);border-radius:50%;transform:translate(-50%,-50%);animation:ring 2.6s ease-out infinite;z-index:3;pointer-events:none}
+.ring.r2{animation-delay:1.3s}
+@keyframes ring{0%{width:26px;height:10px;opacity:.95}100%{width:220px;height:78px;opacity:0}}
+.map.live .pin{transform:translate(-50%,-190%) scale(.7);opacity:0}.map.live .ring{display:none}
+.side-col{display:grid;gap:16px}
+.box{border-radius:28px;border:1px solid var(--line-2);background:var(--panel);padding:clamp(22px,3vw,32px)}
+.box dt{font:700 10.5px/1.6 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.box dd{margin:4px 0 16px;font:700 17px/1.4 var(--display)}
+.box dd a{text-underline-offset:4px;text-decoration-color:var(--g)}
+.hours .day{font:800 clamp(18px,1.6vw,21px)/1 var(--display);color:var(--g);text-transform:uppercase;margin:18px 0 12px}
+.hours .slot{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font:800 clamp(18px,1.7vw,22px)/1 var(--display);white-space:nowrap;letter-spacing:.02em}
+.hours .slot:last-of-type{border-bottom:0}
+.hours .slot small{font:700 10.5px/1 var(--body);letter-spacing:.16em;color:var(--mute);text-transform:uppercase}
+.status{display:inline-flex;align-items:center;gap:8px;margin:14px 0 0;font:700 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;padding:7px 11px;border-radius:999px;border:1px solid var(--line-2);color:var(--mute)}
+.status[hidden]{display:none}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--dim)}
+.status.open{color:var(--g);border-color:rgba(143,224,0,.45);background:rgba(143,224,0,.08)}.status.open::before{background:var(--g);box-shadow:0 0 8px var(--g)}
+@media (max-width:900px){.place{grid-template-columns:1fr}.labph{min-height:0;aspect-ratio:16/10}}
+
+/* ======== CONTATO ======== */
+.talk{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.talk .stack{display:grid;gap:16px}
+.card{position:relative;display:flex;align-items:center;gap:clamp(16px,2.4vw,26px);padding:clamp(20px,3vw,34px);border:1px solid var(--line-2);border-radius:26px;text-decoration:none;color:#fff;background:var(--panel);isolation:isolate;transition:transform .45s var(--ease),border-color .3s,box-shadow .3s;min-width:0}
+.card:hover{transform:translateY(-3px);border-color:rgba(143,224,0,.6);box-shadow:0 0 60px -20px var(--g-glow)}
+.card.main::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--a),transparent 0 60%,var(--g) 80%,transparent 92%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:beam 4.5s linear infinite;z-index:-1}
+.card .ico{flex:none;width:clamp(58px,7vw,80px);aspect-ratio:1;border-radius:20px;display:grid;place-items:center;background:var(--wa);color:#04210f}
+.card .ico.alt{background:rgba(143,224,0,.1);color:var(--g);border:1px solid rgba(143,224,0,.45)}
+.card .ico svg{width:52%;height:52%}
+.card small{display:block;font:700 11px/1.4 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.card b{display:block;margin-top:6px;font:800 clamp(22px,3.2vw,40px)/1.1 var(--display)}
+.card.side b{font-size:clamp(17px,2vw,22px);overflow-wrap:anywhere}
+.card em{display:inline-block;margin-top:10px;font:800 12.5px/1 var(--display);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--g)}
+@media (max-width:860px){.talk{grid-template-columns:1fr}}
+
+/* ======== CTA FINAL ======== */
+.final{text-align:center;overflow:hidden}
+.final::before,.final::after{display:none}
+.final .glow{position:absolute;left:50%;top:50%;width:min(900px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(143,224,0,.2),transparent);pointer-events:none}
+.final h2{font-size:clamp(32px,5.6vw,72px);max-width:18ch;margin-inline:auto}
+.final .lead{margin-inline:auto;font-size:clamp(18px,1.8vw,22px)}
+.final .btns{justify-content:center;margin-top:34px}
+
+/* ======== footer ======== */
+footer{position:relative;border-top:1px solid var(--line);background:rgba(0,0,0,.9);padding-block:48px}
+footer .wrap{display:grid;grid-template-columns:auto 1fr;gap:28px 48px;align-items:center}
+footer .flogo{width:150px;height:auto}
+footer .fi b{font:800 20px/1 var(--display);color:var(--g);letter-spacing:.04em}
+footer .fi p{margin:6px 0 0;color:var(--mute);font-size:14.5px}
+footer nav{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:16px;font:700 13px/1.4 var(--display);letter-spacing:.08em;text-transform:uppercase}
+footer nav a{text-decoration:none}footer nav a:hover{color:var(--g)}
+footer small{grid-column:1/-1;color:var(--dim);font-size:13px}
+@media (max-width:640px){footer .wrap{grid-template-columns:1fr}}
+
+.fab{position:fixed;right:clamp(16px,3vw,30px);bottom:calc(clamp(16px,3vw,30px) + env(safe-area-inset-bottom,0px));z-index:30;width:58px;height:58px;border-radius:50%;background:var(--wa);color:#04210f;display:grid;place-items:center;animation:ping 2.2s ease-out infinite}
+.fab svg{width:30px;height:30px}
+@keyframes ping{0%{box-shadow:0 14px 34px -10px rgba(37,211,102,.7),0 0 0 0 rgba(37,211,102,.5)}100%{box-shadow:0 14px 34px -10px rgba(37,211,102,.7),0 0 0 16px rgba(37,211,102,0)}}
+
+.js .rv{opacity:0}
+.js .rv.in{animation:rvIn .9s var(--ease) both}
+@keyframes rvIn{from{opacity:0;transform:translateY(26px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="labbg" aria-hidden="true"></div>
+<div class="labshade" aria-hidden="true"></div>
+<div class="gridlines" aria-hidden="true"></div>
+<div class="frame" aria-hidden="true">
+  <span class="h ht"></span><span class="h hb"></span>
+  <span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span>
+  <span class="tag">Fazio Tech · Cáceres — MT</span><span class="tag r2">Assistência técnica especializada</span>
+</div>
+<div class="rail-pcb l" aria-hidden="true"><svg id="railL"></svg></div>
+<div class="rail-pcb r" aria-hidden="true"><svg id="railR"></svg></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Fazio Tech — início"><img src="img/logo.webp" alt="Fazio Tech Assistência Técnica Especializada" width="900" height="793"></a>
+    <ul id="menu">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#reparos">Reparos</a></li>
+      <li><a href="#acessorios">Acessórios</a></li>
+      <li><a href="#loja">Loja</a></li>
+      <li><a href="#diogo">Diogo Fazio</a></li>
+      <li><a href="#capacitacao">Capacitação</a></li>
+      <li><a href="#clientes">Clientes</a></li>
+      <li><a href="#localizacao">Localização</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <div class="navr">
+      <a class="btn solid wa" href="#" target="_blank" rel="noopener">Solicitar atendimento</a>
+      <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow rv">Fazio Tech · Cáceres — MT</p>
+      <h1 class="rv"><span>Tecnologia</span><span class="w">exige</span><span>precisão.</span></h1>
+      <ul class="probs rv"><li>Não liga?</li><li>Quebrou?</li><li>Molhou?</li></ul>
+      <p class="lead rv"><span class="gtxt"><b>Nós temos a solução.</b></span> Assistência técnica especializada para quem não abre mão de um serviço profissional — com técnico certificado.</p>
+      <div class="btns rv">
+        <a class="btn solid wa" href="#" target="_blank" rel="noopener">Solicitar atendimento</a>
+        <a class="btn" href="#diogo">Conhecer a Fazio Tech</a>
+      </div>
+      <a class="rate rv" href="#avaliacao"><b>5,0</b><i aria-hidden="true">★★★★★</i>Nota no Google</a>
+    </div>
+    <div class="stage rv" aria-hidden="true">
+      <span class="disc"></span><span class="orbit"></span><span class="orbit o2"></span>
+      <div class="mark"><img src="img/logo.webp" alt=""></div>
+      <div class="chip c-a"><b>Técnico certificado</b><small>Diogo Fazio</small></div>
+      <div class="chip c-b"><b><span class="st">★★★★★</span> 5,0</b><small>Avaliação no Google</small></div>
+      <span class="coords">16°04′S · 57°40′W<br>Cáceres — MT</span>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES GOOGLE (fundo verde) -->
+<section class="reviews" id="avaliacao">
+  <div class="board" aria-hidden="true"><svg id="boardSvg"></svg></div>
+  <div class="wrap">
+    <div class="rvhead">
+      <div class="bigscore rv">
+        <span class="gl"><svg viewBox="0 0 24 24" aria-label="Google" role="img"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1A10 10 0 0 0 2 12c0 1.6.4 3.1 1.1 4.6L6.4 14z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1z"/></svg>Google</span>
+        <span class="n" aria-label="Nota 5,0 de 5">5,0</span>
+        <div class="st" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.6 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.6 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.6 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.6 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.6 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6z"/></svg></div>
+      </div>
+      <div class="rv">
+        <p class="eyebrow">Avaliações reais no Google</p>
+        <h2>Nota máxima. <span class="o">Cinco estrelas.</span></h2>
+        <p class="lead">O que os clientes da Fazio Tech escreveram no Google, do jeito que publicaram.</p>
+        <div class="btns" style="margin-top:26px"><a class="btn dark" href="https://www.google.com/search?q=FAZIO+TECH+Tv.+do+Atleta%2C+6+-+C%C3%A1ceres%2C+MT%2C+78205490%2C+Brasil" target="_blank" rel="noopener">Ver avaliações no Google</a></div>
+      </div>
+    </div>
+    <div class="rgrid">
+      <figure class="rcard feat rv"><svg class="g" viewBox="0 0 24 24" aria-label="Google" role="img"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1A10 10 0 0 0 2 12c0 1.6.4 3.1 1.1 4.6L6.4 14z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1z"/></svg>
+        <div class="who"><span class="av"><img src="img/av-daiane.webp" alt="" loading="lazy"></span><div><b>Daiane Pires</b><small>Local Guide · 26 avaliações · 25 fotos</small></div></div>
+        <div class="meta"><i aria-label="5 estrelas">★★★★★</i></div>
+        <span class="tag">Avaliação em destaque</span>
+        <blockquote><svg class="q" viewBox="0 0 64 48" aria-hidden="true"><path d="M0 48V28C0 12 8 3 24 0l3 7c-8 3-12 8-12 15h11v26zm37 0V28C37 12 45 3 61 0l3 7c-8 3-12 8-12 15h11v26z"/></svg>Atendimento de qualidade e serviço rápido!!</blockquote>
+      </figure>
+      <figure class="rcard  rv"><svg class="g" viewBox="0 0 24 24" aria-label="Google" role="img"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1A10 10 0 0 0 2 12c0 1.6.4 3.1 1.1 4.6L6.4 14z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1z"/></svg>
+        <div class="who"><span class="av"><img src="img/av-igor.webp" alt="" loading="lazy"></span><div><b>Igor Lazarin</b><small>2 avaliações</small></div></div>
+        <div class="meta"><i aria-label="5 estrelas">★★★★★</i></div>
+        <blockquote>Ótimo serviço e peças de qualidade</blockquote>
+      </figure>
+      <figure class="rcard  rv"><svg class="g" viewBox="0 0 24 24" aria-label="Google" role="img"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1A10 10 0 0 0 2 12c0 1.6.4 3.1 1.1 4.6L6.4 14z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1z"/></svg>
+        <div class="who"><span class="av" style="background:#1a6dc2">T</span><div><b>Tereza Oliveira</b><small>1 avaliação</small></div></div>
+        <div class="meta"><i aria-label="5 estrelas">★★★★★</i></div>
+        <blockquote>Excelente serviço super recomendo.</blockquote>
+      </figure>
+      <figure class="rcard  rv"><svg class="g" viewBox="0 0 24 24" aria-label="Google" role="img"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1A10 10 0 0 0 2 12c0 1.6.4 3.1 1.1 4.6L6.4 14z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1z"/></svg>
+        <div class="who"><span class="av" style="background:#e0306f">k</span><div><b>karluce cebalho</b><small>1 avaliação</small></div></div>
+        <div class="meta"><i aria-label="5 estrelas">★★★★★</i></div>
+        <blockquote>Muito bom e de confiança 👍🏻</blockquote>
+      </figure>
+      <figure class="rcard  rv"><svg class="g" viewBox="0 0 24 24" aria-label="Google" role="img"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1A10 10 0 0 0 2 12c0 1.6.4 3.1 1.1 4.6L6.4 14z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1z"/></svg>
+        <div class="who"><span class="av" style="background:#2f5d3a">A</span><div><b>Augusto Cesar Da Silva</b><small>1 avaliação</small></div></div>
+        <div class="meta"><i aria-label="5 estrelas">★★★★★</i></div>
+        <blockquote>Bom trabalho recomendo</blockquote>
+      </figure>
+      <figure class="rcard  rv"><svg class="g" viewBox="0 0 24 24" aria-label="Google" role="img"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1A10 10 0 0 0 2 12c0 1.6.4 3.1 1.1 4.6L6.4 14z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1z"/></svg>
+        <div class="who"><span class="av"><img src="img/av-cleuby.webp" alt="" loading="lazy"></span><div><b>Cleuby da Silva Moura</b><small>1 avaliação</small></div></div>
+        <div class="meta"><i aria-label="5 estrelas">★★★★★</i></div>
+        <blockquote>Excelente serviço</blockquote>
+      </figure>
+      <figure class="rcard  rv"><svg class="g" viewBox="0 0 24 24" aria-label="Google" role="img"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1A10 10 0 0 0 2 12c0 1.6.4 3.1 1.1 4.6L6.4 14z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1z"/></svg>
+        <div class="who"><span class="av" style="background:#7b2fb0">L</span><div><b>Luzierio Pereira</b><small>1 avaliação</small></div></div>
+        <div class="meta"><i aria-label="5 estrelas">★★★★★</i></div>
+        <blockquote>Muito bom</blockquote>
+      </figure>
+      <a class="rcta rv" href="https://www.google.com/search?q=FAZIO+TECH+Tv.+do+Atleta%2C+6+-+C%C3%A1ceres%2C+MT%2C+78205490%2C+Brasil" target="_blank" rel="noopener">Leia todas as avaliações no Google<span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section class="impact">
+  <div class="wrap">
+    <p class="eyebrow rv" style="justify-content:center">Posicionamento</p>
+    <h2 class="rv">Seu equipamento merece mais <span class="w">do que um conserto.</span></h2>
+    <p class="big rv">Merece diagnóstico, precisão e atenção aos detalhes.</p>
+    <p class="lead rv">A Fazio Tech atua com foco em assistência técnica especializada, oferecendo uma abordagem profissional para equipamentos de tecnologia e comunicação.</p>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section>
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow rv">Pilares</p><h2 class="rv">Precisão em <span class="w">cada detalhe.</span></h2></div></div>
+    <div class="pillars">
+      <div class="pillar rv"><span class="n">01</span><h3>Diagnóstico</h3><p>Análise cuidadosa para identificar o problema do equipamento.</p></div>
+      <div class="pillar rv"><span class="n">02</span><h3>Precisão</h3><p>Serviço técnico realizado com atenção aos detalhes.</p></div>
+      <div class="pillar rv"><span class="n">03</span><h3>Confiança</h3><p>Atendimento profissional em Cáceres — MT.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REPAROS -->
+<section id="reparos">
+  <div class="wrap">
+    <div class="rep">
+      <div class="sticky">
+        <p class="eyebrow rv">Reparos</p>
+        <p class="qs rv"><span>Não liga?</span><span>Quebrou?</span><span>Molhou?</span><span>Nós temos a solução.</span></p>
+        <p class="lead rv">Traga o aparelho para avaliação ou chame no WhatsApp contando o modelo e o defeito.</p>
+        <p class="label rv">Atendemos</p>
+        <div class="plat rv">
+          <span><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.9-.8-3.1-.8a4.6 4.6 0 0 0-3.9 2.4c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.6-1-2.7-4zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.1-.5 2.7-1.3z"/></svg>Apple</span>
+          <span><svg viewBox="0 0 24 24"><path d="M3 5.5l7.4-1v7.1H3zm0 13l7.4 1v-7H3zm8.2 1.1L21 21v-8.4h-9.8zm0-15.2v7.2H21V3z"/></svg>Windows</span>
+          <span><svg viewBox="0 0 24 24"><path d="M6 18a1 1 0 0 0 1 1h1v3a1.5 1.5 0 0 0 3 0v-3h2v3a1.5 1.5 0 0 0 3 0v-3h1a1 1 0 0 0 1-1V8H6zM3.5 8A1.5 1.5 0 0 0 2 9.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 3.5 8zm17 0A1.5 1.5 0 0 0 19 9.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 20.5 8zM15.5 2.2l1.3-1.3-.6-.6-1.5 1.5A6 6 0 0 0 12 1a6 6 0 0 0-2.7.8L7.8.3l-.6.6 1.3 1.3A5.3 5.3 0 0 0 6 7h12a5.3 5.3 0 0 0-2.5-4.8zM10 5H9V4h1zm5 0h-1V4h1z"/></svg>Android</span>
+        </div>
+        <div class="btns rv" style="margin-top:30px"><a class="btn solid wa" href="#" data-msg="Olá! Vim pelo site da Fazio Tech e quero um orçamento de reparo." target="_blank" rel="noopener">Pedir orçamento</a></div>
+      </div>
+      <ul class="svc">
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5M8.5 11h5M11 8.5v5"/></svg></span><span><b>Diagnóstico</b><small>Identificação do problema e análise do equipamento.</small></span></li>
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></span><span><b>Manutenção</b><small>Serviços técnicos para o funcionamento adequado do aparelho.</small></span></li>
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1.5V4M15 1.5V4M9 20v2.5M15 20v2.5M1.5 9H4M1.5 15H4M20 9h2.5M20 15h2.5"/></svg></span><span><b>Reparo de placas</b><small>Capacitação em diagnóstico e reparo de placas iPhone.</small></span></li>
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M9 9v1.5M15 9v1.5M12 9v4h-1M9 16a4 4 0 0 0 6 0"/></svg></span><span><b>Face ID</b><small>Capacitação em reparos de Face ID.</small></span></li>
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 6h4M9 18h6"/></svg></span><span><b>EPROM de tela</b><small>Capacitação em EPROM de tela.</small></span></li>
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3M11 9l-2.5 3.5h4L10 16"/></svg></span><span><b>Flex de bateria</b><small>Capacitação em flex de bateria.</small></span></li>
+      </ul>
+    </div>
+    <div class="gal">
+      <figure class="tile shine rv"><span class="sh"></span><img src="img/reparo-01.webp" alt="iPhone em teste diante do microscópio da bancada Fazio Tech" loading="lazy"><figcaption><small>Laboratório</small>Teste após o reparo, na bancada com microscópio</figcaption></figure>
+      <figure class="tile shine rv"><span class="sh"></span><img src="img/reparo-02.webp" alt="iPhone 15 Pro Max após troca de bateria" loading="lazy"><figcaption><small>iPhone 15 Pro Max</small>Troca de bateria sem mensagem de peça desconhecida</figcaption></figure>
+      <figure class="tile shine rv"><span class="sh"></span><img src="img/reparo-03.webp" alt="Placa do Xiaomi Mi 11 Lite com CPU após reballing" loading="lazy"><figcaption><small>Xiaomi Mi 11 Lite</small>Não ligava: CPU com solda fria, reballing feito</figcaption></figure>
+      <figure class="tile shine rv"><span class="sh"></span><img src="img/reparo-07.webp" alt="Placa de celular Samsung segurada diante do microscópio" loading="lazy"><figcaption><small>Reparo de placa</small>Trabalho em microssolda</figcaption></figure>
+      <figure class="tile shine rv"><span class="sh"></span><img src="img/reparo-04.webp" alt="iPhone 14 Pro com tampa traseira estilhaçada" loading="lazy"><figcaption><small>iPhone 14 Pro</small>Troca de tampa traseira</figcaption></figure>
+      <figure class="tile shine rv"><span class="sh"></span><img src="img/reparo-05.webp" alt="iPhone 11 com tela listrada antes da troca" loading="lazy"><figcaption><small>iPhone 11</small>Troca de tela sem mensagem de peça desconhecida</figcaption></figure>
+      <figure class="tile shine rv"><span class="sh"></span><img src="img/reparo-06.webp" alt="Celular Samsung aberto com o ponto do defeito marcado na placa" loading="lazy"><figcaption><small>Samsung</small>Diagnóstico na placa</figcaption></figure>
+      <figure class="tile shine rv"><span class="sh"></span><img src="img/reparo-08.webp" alt="iPhone aberto com tela e bateria expostas" loading="lazy"><figcaption><small>iPhone</small>Aparelho aberto para reparo</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ACESSÓRIOS -->
+<section id="acessorios">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow rv">Acessórios</p><h2 class="rv">Tudo para o seu <span class="w">celular.</span></h2></div>
+      <p class="lead rv">Carregadores, carregadores veiculares, power banks, cabos e fones na loja. Arraste ou use as setas para ver.</p>
+    </div>
+    <div class="rail-wrap">
+      <div class="rail" id="rail" tabindex="0" aria-label="Fotos de acessórios da Fazio Tech">
+        <figure class="tile"><img src="img/acessorio-01.webp" alt="Carregador turbo Kaidi PD 20W na embalagem" width="1199" height="1600"><figcaption><small>Kaidi</small>Carregador turbo PD 20W</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-02.webp" alt="Adaptador de energia A'Gold CA19" width="1199" height="1600"><figcaption><small>A'Gold</small>Adaptador de energia 3,1A</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-03.webp" alt="Carregador turbo Kaidi GaN 65W" width="1199" height="1600"><figcaption><small>Kaidi</small>Carregador GaN 65W</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-04.webp" alt="Carregador A'Gold turbo 40W" width="1199" height="1600" loading="lazy"><figcaption><small>A'Gold</small>Carregador turbo 40W</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-05.webp" alt="Carregador veicular A'Gold Pro 60W com visor de LED" width="1199" height="1600" loading="lazy"><figcaption><small>A'Gold Pro</small>Carregador veicular 60W com LED</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-06.webp" alt="Carregador veicular turbo Kaidi 38W com cabo tipo C" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Carregador veicular PD + QC 38W</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-07.webp" alt="Carregador veicular Kaidi PD 20W e QC 18W" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Carregador veicular PD 20W + QC 18W</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-08.webp" alt="Carregador veicular Kaidi com duas portas USB" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Carregador veicular duas portas USB</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-09.webp" alt="Power bank magnético Kaidi de 10.000 mAh" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Power bank magnético 10.000 mAh</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-10.webp" alt="Power bank Kaidi de 5.000 mAh" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Power bank 5.000 mAh</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-11.webp" alt="Carregadores indutivos Kaidi para smartwatch" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Carregador para smartwatch</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-12.webp" alt="Cabo Kaidi tipo C para tipo C" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Cabo tipo C para tipo C</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-13.webp" alt="Cabo Kaidi tipo C para Lightning" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Cabo tipo C para Lightning</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-14.webp" alt="Fone de ouvido sem fio Kaidi TWS" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Fone sem fio TWS</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-15.webp" alt="Fone de ouvido sem fio Kaidi preto e vermelho" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Fone de ouvido sem fio</figcaption></figure>
+        <figure class="tile"><img src="img/acessorio-16.webp" alt="Fone de ouvido sem fio Kaidi TWS Gamer" width="1199" height="1600" loading="lazy"><figcaption><small>Kaidi</small>Fone TWS Gamer</figcaption></figure>
+      </div>
+      <button class="rail-btn p" type="button" id="railPrev" aria-label="Foto anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="rail-btn n" type="button" id="railNext" aria-label="Próxima foto"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="rail-foot"><span class="rail-count"><b id="railNow">01</b> / <span id="railTotal">16</span></span><span class="rail-bar"><i id="railFill"></i></span></div>
+    </div>
+    <ul class="acc">
+      <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><rect x="8" y="5" width="4.5" height="4.5" rx="1.2"/><circle cx="10.2" cy="7.2" r=".9"/></svg></span><b>Capas</b></li>
+      <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M3.5 7.5V5A2.5 2.5 0 0 1 6 2.5h3M9 10l6-6M9 15l8-8"/></svg></span><b>Películas</b></li>
+      <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg></span><b>Fones</b></li>
+      <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="7" width="12" height="13" rx="2.5"/><path d="M9.5 7V3M14.5 7V3M12.8 10.5l-2.3 3.5h3l-2.3 3.5"/></svg></span><b>Carregadores</b></li>
+      <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="2" width="6" height="7" rx="1.5"/><path d="M5 2V.5M7 2V.5M6 9v5a4 4 0 0 0 4 4h4a4 4 0 0 1 4 4"/><rect x="15" y="12" width="6" height="5" rx="1.5" transform="rotate(90 18 14.5)"/></svg></span><b>Cabos</b></li>
+    </ul>
+    <div class="btns rv" style="margin-top:28px">
+      <a class="btn solid" href="https://wa.me/c/556598000224" target="_blank" rel="noopener">Ver catálogo no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- LOJA POR DENTRO -->
+<section id="loja">
+  <div class="wrap store">
+    <div>
+      <p class="eyebrow rv">Por dentro da loja</p>
+      <h2 class="rv">Venha escolher <span class="w">pessoalmente.</span></h2>
+      <p class="lead rv">Além do laboratório, a Fazio Tech tem loja física em Cáceres. Uma parede inteira de capas fica à vista para você ver, comparar e escolher a que combina com o seu aparelho, com atendimento no balcão.</p>
+      <ul class="feats">
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><rect x="8" y="5" width="4.5" height="4.5" rx="1.2"/></svg></span><span><b>Capas</b><span class="t">Uma parede de modelos e cores expostos na loja.</span></span></li>
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M9 10l6-6M9 15l8-8"/></svg></span><span><b>Películas</b><span class="t">Proteção para a tela, escolhida junto com a capa.</span></span></li>
+        <li class="rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="7" width="12" height="13" rx="2.5"/><path d="M9.5 7V3M14.5 7V3M12.8 10.5l-2.3 3.5h3l-2.3 3.5"/></svg></span><span><b>Fones e carregadores</b><span class="t">Fones, carregadores, cabos e power banks no mesmo lugar.</span></span></li>
+      </ul>
+      <div class="btns rv" style="margin-top:30px"><a class="btn solid" href="#localizacao">Como chegar</a><a class="btn wa" href="#" data-msg="Olá! Vim pelo site da Fazio Tech e quero saber se tem capa para o meu aparelho." target="_blank" rel="noopener">Consultar capa no WhatsApp</a></div>
+    </div>
+    <figure class="store-ph hud rv"><i class="k k1"></i><i class="k k2"></i><i class="k k3"></i><i class="k k4"></i><span class="scan" aria-hidden="true"></span><img src="img/loja-interna.webp" alt="Parede da loja Fazio Tech com dezenas de capas de celular expostas" width="1200" height="1600" loading="lazy"><figcaption>Loja Fazio Tech · Cáceres</figcaption></figure>
+  </div>
+</section>
+
+<!-- CEO -->
+<section id="diogo">
+  <div class="wrap ceo">
+    <figure class="ceo-ph hud rv"><i class="k k1"></i><i class="k k2"></i><i class="k k3"></i><i class="k k4"></i>
+      <img src="img/diogo.webp" alt="Diogo Fazio Rosa segurando dois certificados de cursos de reparo" width="800" height="1000">
+      <figcaption class="tagname"><span><small>CEO · Fazio Tech</small><b>Diogo Fazio Rosa</b></span><img src="img/logo.webp" alt="" aria-hidden="true"></figcaption>
+    </figure>
+    <div>
+      <p class="eyebrow rv">Quem está por trás</p>
+      <h2 class="rv">Diogo <span class="w">Fazio Rosa</span></h2>
+      <span class="role rv">CEO · Técnico certificado</span>
+      <p class="lead rv">À frente da Fazio Tech, Diogo Fazio Rosa busca capacitação constante em manutenção e reparo de smartphones, com cursos em diagnóstico e reparo de placas, Face ID, EPROM de tela e flex de bateria.</p>
+      <div class="brandrow rv"><img src="img/logo.webp" alt="Logotipo Fazio Tech"><p>Assistência técnica especializada em Cáceres — MT.</p></div>
+      <div class="trained rv">
+        <p class="eyebrow">Capacitado por:</p>
+        <div class="logos">
+          <div class="lg"><img src="img/logo-chip7.webp" alt="Chip7 Treinamentos" loading="lazy"></div>
+          <div class="lg"><img src="img/logo-ghenady.webp" alt="Ghenady Tec Microsoldering" loading="lazy"></div>
+          <div class="lg round"><img src="img/logo-guilherme.webp" alt="Guilherme Carvalho Microeletrônica e Microsoldagem" loading="lazy"></div>
+          <div class="lg"><img src="img/logo-leandro-jumper.webp" alt="Apple Leandro Jumper" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACITAÇÃO -->
+<section id="capacitacao">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow rv">Capacitação</p><h2 class="rv">Formação técnica <span class="w">comprovada.</span></h2></div>
+      <p class="lead rv">Cursos presenciais de reparo de smartphones, com certificado em nome de Diogo Fazio Rosa.</p>
+    </div>
+    <div class="capg">
+      <figure class="tile main shine rv"><span class="sh"></span><img src="img/cap-principal.webp" alt="Diogo Fazio recebendo o certificado da Tech Channel, curso de reparo de placas de iPhone" width="880" height="1100"><figcaption><small>Tech Channel · Centro de Capacitação</small>Reparo de placas de iPhone · 40 horas</figcaption></figure>
+      <div class="side">
+        <figure class="tile shine rv"><span class="sh"></span><img src="img/cap-chip7.webp" alt="Diogo Fazio com o certificado do Clube Chip7, Módulo 2 Full" loading="lazy"><figcaption><small>Clube Chip7</small>Módulo 2 Full</figcaption></figure>
+        <figure class="tile shine rv"><span class="sh"></span><img src="img/cap-turma.webp" alt="Turma de formandos da Tech Channel com certificados, Diogo Fazio ao centro" loading="lazy"><figcaption><small>Tech Channel</small>Turma de formandos</figcaption></figure>
+        <figure class="tile shine rv"><span class="sh"></span><img src="img/cap-ghenady.webp" alt="Diogo Fazio com certificado de conclusão Profissional Qualificado" loading="lazy"><figcaption><small>Ghenady Tec · Central Cell</small>Profissional qualificado</figcaption></figure>
+        <figure class="tile shine rv"><span class="sh"></span><img src="img/cap-centro-treinamentos.webp" alt="Diogo Fazio recebendo certificado no centro de treinamentos" loading="lazy"><figcaption><small>Centro de Treinamentos</small>Certificado</figcaption></figure>
+        <figure class="tile shine rv"><span class="sh"></span><img src="img/cap-equipe.webp" alt="Diogo Fazio com colegas de curso no laboratório da Tech Channel" loading="lazy"><figcaption><small>Tech Channel</small>No laboratório</figcaption></figure>
+        <a class="capcta wa rv" href="#" target="_blank" rel="noopener"><b>Seu aparelho nas mãos de quem estudou para isso.</b><span>Solicitar atendimento →</span></a>
+      </div>
+    </div>
+    <ul class="courses">
+      <li class="rv"><span class="org">Tech Channel</span><span class="what">Reparo de placas de iPhone (do 7 ao 14 Pro Max) com Face ID (do X ao 14 Pro Max), EPROM de tela, flex de bateria e remoção de mensagem de câmera.</span><span class="meta">Cuiabá · 05/2024 · 40 h</span></li>
+      <li class="rv"><span class="org">Clube Chip7</span><span class="what">Módulo 2 Full — hardware e software de smartphones: diagnóstico, reparo e manutenção de placas, técnicas de soldagem, troca de componentes e atualizações de sistemas.</span><span class="meta">Módulo 2 Full</span></li>
+      <li class="rv"><span class="org">Central Cell · Apple Leandro Jumper</span><span class="what">Curso avançado de diagnóstico e reparo em placas Apple, linhas 7 ao 13 Pro Max.</span><span class="meta">Cuiabá · 07/2023 · 40 h</span></li>
+      <li class="rv"><span class="org">Centro de Smartphone</span><span class="what">Curso teórico e prático de reparos de Face ID, EPROM de tela e flex de bateria.</span><span class="meta">Cuiabá · 07/2023 · 12 h</span></li>
+      <li class="rv"><span class="org">Ghenady Tec · Central Cell</span><span class="what">Certificado de conclusão — Profissional qualificado.</span><span class="meta">Certificado</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section id="clientes">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow rv">Clientes satisfeitos</p><h2 class="rv">Quem confiou <span class="w">e aprovou.</span></h2></div>
+      <p class="lead rv">Quem saiu da Fazio Tech com o aparelho na mão.</p>
+    </div>
+    <div class="clients">
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-01.webp" alt="Cliente com celular Samsung e carregador comprados na Fazio Tech" width="640" height="848" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-02.webp" alt="Cliente sorrindo com iPhone e a caixa do aparelho" width="640" height="988" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-03.webp" alt="Cliente com iPhone 15 Pro ao lado da equipe Fazio Tech" width="640" height="938" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-04.webp" alt="Cliente com Samsung Galaxy S25 Ultra ao lado da equipe Fazio Tech" width="1440" height="2076" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-05.webp" alt="Cliente com iPhone e a caixa do aparelho" width="1440" height="2211" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-06.webp" alt="Cliente com iPhone 14 Pro Max dourado" width="1080" height="1688" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-07.webp" alt="Cliente com Samsung S23 Ultra ao lado de Diogo Fazio" width="640" height="1060" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-08.webp" alt="Cliente com iPhone 15 Pro Max ao lado da equipe Fazio Tech" width="640" height="832" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-09.webp" alt="Cliente com iPhone 14 Pro Max e sacola da Fazio Tech" width="1290" height="1525" loading="lazy"></figure>
+      <figure class="shine rv"><span class="sh"></span><img src="img/cliente-10.webp" alt="Cliente com Samsung S26 Ultra e sacola da Fazio Tech" width="640" height="735" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZAÇÃO + HORÁRIOS -->
+<section id="localizacao">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow rv">Localização</p><h2 class="rv">Estamos <span class="w">em Cáceres.</span></h2></div>
+      <p class="lead rv">Travessa do Atleta, 50 · Bairro Marajoara · Cáceres — MT · CEP 78205-490</p>
+    </div>
+    <div class="place">
+      <figure class="labph hud rv"><i class="k k1"></i><i class="k k2"></i><i class="k k3"></i><i class="k k4"></i><img src="img/laboratorio-foto.webp" alt="Bancada do laboratório da Fazio Tech com microscópio, estações de solda, fonte de bancada e monitores com o esquema de placa" width="2000" height="1500" loading="lazy"><figcaption>Nosso laboratório</figcaption></figure>
+      <div class="loc">
+        <div class="map rv" id="map">
+          <iframe title="Mapa com a localização da Fazio Tech em Cáceres, MT" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=FAZIO+TECH,+Tv.+do+Atleta,+C%C3%A1ceres+-+MT,+78205-490&amp;z=16&amp;hl=pt-BR&amp;output=embed"></iframe>
+          <span class="coord">Cáceres — MT · Google Maps</span>
+          <span class="ring" aria-hidden="true"></span><span class="ring r2" aria-hidden="true"></span>
+          <div class="pin" aria-hidden="true"><div class="body"></div></div>
+          <button class="cover" type="button" id="mapCover" aria-label="Ativar o mapa para arrastar e dar zoom"><span>Toque para explorar o mapa</span></button>
+        </div>
+        <div class="infocard rv" id="hours">
+          <div>
+            <p class="eyebrow">Endereço</p>
+            <p class="addr">Travessa do Atleta, 50<br>Bairro Marajoara<br>Cáceres — MT · 78205-490</p>
+            <a class="btn solid" href="https://www.google.com/search?q=FAZIO+TECH+Tv.+do+Atleta%2C+6+-+C%C3%A1ceres%2C+MT%2C+78205490%2C+Brasil" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Abrir localização</a>
+          </div>
+          <div class="hours">
+            <p class="eyebrow">Horário</p>
+            <p class="status" id="status" hidden></p>
+            <p class="day">Segunda a sexta</p>
+            <div class="slot"><span>08:00 — 11:30</span></div>
+            <div class="slot"><span>13:30 — 18:00</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow rv">Contato</p><h2 class="rv">Precisa de <span class="w">assistência?</span></h2></div>
+      <p class="lead rv">Entre em contato com a Fazio Tech e fale com a equipe.</p>
+    </div>
+    <div class="talk">
+      <a class="card main wa rv" href="#" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/></svg></span>
+        <span><small>WhatsApp</small><b>(65) 9 9800-0224</b><em>Solicitar atendimento →</em></span>
+      </a>
+      <div class="stack">
+        <a class="card side rv" href="https://www.instagram.com/faziotech/" target="_blank" rel="noopener">
+          <span class="ico alt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></span>
+          <span><small>Instagram</small><b>@faziotech</b><em>Ver perfil →</em></span>
+        </a>
+        <a class="card side rv" href="mailto:faziotech2017@gmail.com">
+          <span class="ico alt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg></span>
+          <span><small>E-mail</small><b>faziotech2017@gmail.com</b><em>Enviar e-mail →</em></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <span class="glow" aria-hidden="true"></span>
+  <div class="wrap" style="position:relative">
+    <h2 class="rv">Seu equipamento nas mãos de quem <span class="w">leva tecnologia a sério.</span></h2>
+    <p class="lead gtxt rv">Fale com a Fazio Tech.</p>
+    <div class="btns rv"><a class="btn solid wa" href="#" target="_blank" rel="noopener">Solicitar atendimento</a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="flogo" src="img/logo.webp" alt="Fazio Tech" loading="lazy">
+    <div class="fi">
+      <b>FAZIO TECH</b>
+      <p>Assistência Técnica Especializada · Travessa do Atleta, 50 · Marajoara · Cáceres/MT<br>faziotech2017@gmail.com · Instagram: @faziotech · (65) 9 9800-0224</p>
+      <nav>
+        <a href="https://www.instagram.com/faziotech/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.google.com/search?q=FAZIO+TECH+Tv.+do+Atleta%2C+6+-+C%C3%A1ceres%2C+MT%2C+78205490%2C+Brasil" target="_blank" rel="noopener">Localização</a>
+        <a href="#contato">Contato</a>
+        <a href="https://wa.me/c/556598000224" target="_blank" rel="noopener">Catálogo</a>
+      </nav>
+    </div>
+    <small>© Fazio Tech · Assistência técnica especializada em Cáceres — MT.</small>
+  </div>
+</footer>
+
+<a class="fab wa" href="#" target="_blank" rel="noopener" aria-label="Chamar a Fazio Tech no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  /* WhatsApp: um único número para todos os botões */
+  var WA='556598000224',DEF='Olá! Vim pelo site da Fazio Tech e quero solicitar atendimento.';
+  [].forEach.call(document.querySelectorAll('a.wa'),function(a){a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(a.dataset.msg||DEF)});
+
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  function show(e){e.classList.add('in')}
+  if(!('IntersectionObserver' in window)){els.forEach(show);}
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target);}})},{threshold:.1,rootMargin:'0px 0px -5% 0px'});
+    els.forEach(function(e){io.observe(e)});
+    setTimeout(function(){els.forEach(function(e){if(e.getBoundingClientRect().top<innerHeight)show(e)})},1200);
+  }
+
+  /* menu mobile */
+  var nav=document.getElementById('nav'),bg=document.getElementById('burger');
+  bg.onclick=function(){var o=nav.classList.toggle('open');bg.setAttribute('aria-expanded',o)};
+  [].forEach.call(document.querySelectorAll('#menu a'),function(a){a.onclick=function(){nav.classList.remove('open');bg.setAttribute('aria-expanded','false')}});
+
+
+  /* ===== trilhas de circuito: desenhadas sob medida para a altura da tela ===== */
+  var NS='http://www.w3.org/2000/svg';
+  function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
+  function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  var progPath=null,progLen=0,progHead=null,progHalo=null;
+  function rail(svg,side,seed){
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var W=svg.clientWidth,H=svg.clientHeight,R=rng(seed);if(!W||!H)return;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var n=Math.max(2,Math.floor((W-4)/8)),gap=(W-6)/(n-0.5);
+    function X(i){var x=3+i*gap;return side==='l'?x:W-x}
+    var inw=side==='l'?1:-1;
+    var chips=[];
+    if(n>=4){[.2,.55,.84].forEach(function(f,k){var cy=Math.round(H*(f+(side==='r'?.06:0))),ch=46+Math.round(R()*20);chips.push([cy,cy+ch])})}
+    var g=el('g',{},svg),lanes=[];
+    for(var i=0;i<n;i++){
+      var x=X(i),d='M'+x+' 0',y=0,segs=[];
+      var inChip=i>0?chips:[];
+      while(y<H){
+        var step=50+R()*150,ny=Math.min(H,y+step);
+        var block=null;inChip.forEach(function(c){if(ny>c[0]&&y<c[1])block=c});
+        if(block){d+=' L'+x+' '+(block[0]-3);el('rect',{class:'pad',x:x-1.5,y:block[0]-4,width:3,height:4},g);d+=' M'+x+' '+(block[1]+3);el('rect',{class:'pad',x:x-1.5,y:block[1],width:3,height:4},g);y=block[1]+3;continue}
+        d+=' L'+x+' '+ny;y=ny;
+        if(y<H-40&&i<n-1&&R()<.42){var b=Math.min(4,gap/2)*inw,len=18+R()*48;d+=' l'+b+' '+Math.abs(b)+' l0 '+len+' l'+(-b)+' '+Math.abs(b);y+=len+2*Math.abs(b)}
+        if(y<H-30&&R()<.3)el('circle',{class:'via',cx:x,cy:y,r:1.8},g);
+        if(i===n-1&&y<H-30&&R()<.55){var bl=6+R()*Math.min(22,W*.6),ex=x+bl*inw;el('path',{class:'tr hi',d:'M'+x+' '+y+' l'+(4*inw)+' -4 L'+ex+' '+(y-4)},g);el('circle',{class:'via',cx:ex,cy:y-4,r:2.1},g)}
+      }
+      el('path',{class:'tr'+(i===0?' hi':''),d:d},g);lanes.push(d);
+    }
+    chips.forEach(function(c,k){
+      var x0=Math.min(X(1),X(n-1))-4,x1=Math.max(X(1),X(n-1))+4;
+      el('rect',{class:'chip',x:x0,y:c[0],width:x1-x0,height:c[1]-c[0],rx:2},g);
+      el('circle',{class:'pin1',cx:x0+4,cy:c[0]+4,r:1.3},g);
+      if(x1-x0>22){var t=el('text',{class:'lbl',x:(x0+x1)/2,y:(c[0]+c[1])/2+2,'text-anchor':'middle',transform:'rotate(-90 '+((x0+x1)/2)+' '+((c[0]+c[1])/2)+')'},g);t.textContent=['FZ-T01','MCU-7','PWR-5V'][k]}
+    });
+    /* pulsos de energia percorrendo as trilhas */
+    if(!reduce)[n-1,Math.floor(n/2)].forEach(function(li,k){
+      var p=el('path',{class:'pulse',d:lanes[li]},svg),L=p.getTotalLength();
+      p.style.strokeDasharray='26 '+Math.round(L);p.style.setProperty('--to',(side==='l'?(-L-26):(L+26))+'px');p.style.strokeDashoffset=side==='l'?0:0;
+      p.style.setProperty('--d',(6+R()*6).toFixed(1)+'s');p.style.setProperty('--dl',(-R()*8).toFixed(1)+'s');
+    });
+    /* lado direito: a trilha externa acende conforme a rolagem */
+    if(side==='r'){
+      progPath=el('path',{class:'prog',d:lanes[0]},svg);progLen=progPath.getTotalLength();
+      progPath.style.strokeDasharray=progLen;progHalo=el('circle',{class:'halo',r:7},svg);progHead=el('circle',{class:'head',r:3.6},svg);prog();
+    }
+  }
+  function prog(){
+    if(!progPath)return;var m=document.documentElement.scrollHeight-innerHeight,p=m>0?Math.min(1,Math.max(0,scrollY/m)):0;
+    progPath.style.strokeDashoffset=progLen*(1-p);
+    var pt=progPath.getPointAtLength(Math.max(.1,progLen*p));
+    progHead.setAttribute('cx',pt.x);progHead.setAttribute('cy',pt.y);progHalo.setAttribute('cx',pt.x);progHalo.setAttribute('cy',pt.y);
+  }
+  function board(){
+    var svg=document.getElementById('boardSvg');if(!svg)return;while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var W=svg.clientWidth,H=svg.clientHeight,R=rng(77);svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    for(var k=0;k<14;k++){
+      var y=40+R()*(H-80),x=R()<.5?0:W,dir=x?-1:1,len=80+R()*W*.28,d='M'+x+' '+y,cx=x+dir*len;
+      d+=' L'+cx+' '+y;var dy=(R()<.5?-1:1)*(20+R()*40);d+=' l'+(dir*Math.abs(dy))+' '+dy+' l'+(dir*(30+R()*90))+' 0';
+      el('path',{class:'t',d:d},svg);var p=svg.lastChild,L=p.getTotalLength(),e=p.getPointAtLength(L);
+      el('circle',{class:'v',cx:e.x,cy:e.y,r:4},svg);
+      if(!reduce&&k%3===0){var q=el('path',{class:'p',d:d},svg);q.style.strokeDasharray='18 '+Math.round(L+40);q.style.setProperty('--to',-(L+58)+'px');q.style.animationDuration=(4+R()*4).toFixed(1)+'s';q.style.animationDelay=(-R()*6).toFixed(1)+'s'}
+    }
+  }
+  var map=document.getElementById('map');document.getElementById('mapCover').onclick=function(){map.classList.add('live')};
+  function drawAll(){rail(document.getElementById('railL'),'l',11);rail(document.getElementById('railR'),'r',29);board()}
+  var rt=0,lastW=innerWidth,lastH=innerHeight;
+  addEventListener('resize',function(){if(Math.abs(innerWidth-lastW)<2&&Math.abs(innerHeight-lastH)<120)return;lastW=innerWidth;lastH=innerHeight;clearTimeout(rt);rt=setTimeout(drawAll,180)});
+  drawAll();
+  var pr=0;addEventListener('scroll',function(){if(!pr)pr=requestAnimationFrame(function(){pr=0;prog()})},{passive:true});
+
+  /* carrossel de acessórios */
+  var rail=document.getElementById('rail'),tiles=[].slice.call(rail.querySelectorAll('.tile')),cur=0,auto=null,seen=false,hold=false,raf=0;
+  document.getElementById('railTotal').textContent=('0'+tiles.length).slice(-2);
+  function paint(){
+    raf=0;var mid=rail.scrollLeft+rail.clientWidth/2,best=1e9;
+    tiles.forEach(function(t,i){var d=Math.abs(t.offsetLeft+t.offsetWidth/2-mid)/t.offsetWidth;t.style.setProperty('--s',Math.max(.84,1-d*.16).toFixed(3));t.style.setProperty('--o',Math.max(.45,1-d*.5).toFixed(3));if(d<best){best=d;cur=i;}});
+    tiles.forEach(function(t,i){t.classList.toggle('on',i===cur)});
+    document.getElementById('railNow').textContent=('0'+(cur+1)).slice(-2);
+    document.getElementById('railFill').style.width=((cur+1)/tiles.length*100)+'%';
+  }
+  function to(i){i=(i+tiles.length)%tiles.length;var t=tiles[i];rail.scrollTo({left:t.offsetLeft-(rail.clientWidth-t.offsetWidth)/2,behavior:reduce?'auto':'smooth'});}
+  function play(){clearInterval(auto);if(seen&&!hold&&!reduce)auto=setInterval(function(){to(cur+1)},3800);}
+  rail.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(paint)},{passive:true});
+  addEventListener('resize',paint);
+  document.getElementById('railPrev').onclick=function(){to(cur-1);play()};
+  document.getElementById('railNext').onclick=function(){to(cur+1);play()};
+  rail.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){to(cur+1);e.preventDefault()}if(e.key==='ArrowLeft'){to(cur-1);e.preventDefault()}});
+  var box=rail.parentNode;
+  box.addEventListener('mouseenter',function(){hold=true;play()});
+  box.addEventListener('mouseleave',function(){hold=false;play()});
+  rail.addEventListener('touchstart',function(){hold=true;play()},{passive:true});
+  rail.addEventListener('touchend',function(){setTimeout(function(){hold=false;play()},2500)});
+  var dx=null,sl=0,moved=false;
+  rail.addEventListener('mousedown',function(e){dx=e.pageX;sl=rail.scrollLeft;moved=false;e.preventDefault()});
+  addEventListener('mousemove',function(e){if(dx===null)return;if(Math.abs(e.pageX-dx)>4){moved=true;rail.classList.add('drag')}if(moved)rail.scrollLeft=sl-(e.pageX-dx)});
+  addEventListener('mouseup',function(){if(dx===null)return;dx=null;if(moved){rail.classList.remove('drag');to(cur)}});
+  tiles.forEach(function(t,i){t.addEventListener('click',function(){if(!moved&&i!==cur)to(i)})});
+  if('IntersectionObserver' in window)new IntersectionObserver(function(en){seen=en[0].isIntersecting;play()},{threshold:.4}).observe(rail);else seen=true;
+  paint();play();
+
+  /* aberto agora (somente nos horários informados, seg a sex) */
+  var st=document.getElementById('status');
+  function tick(){
+    var p={};new Intl.DateTimeFormat('en-US',{timeZone:'America/Cuiaba',weekday:'short',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});
+    var d=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday),t=(+p.hour%24)*60+(+p.minute);
+    if(d<1||d>5){st.hidden=true;return}
+    var open=(t>=480&&t<690)||(t>=810&&t<1080);
+    st.hidden=false;st.textContent=open?'Aberto agora':'Fechado agora';st.classList.toggle('open',open);
+  }
+  try{tick();setInterval(tick,30000);}catch(e){}
+
+})();
+</script>
+</body>
+</html>
